@@ -25,6 +25,9 @@ body{
  	justify-content: center;
  	list-style: none;
 }
+#studentNoLabel{
+    font-family: 'Roboto',sans-serif;
+}
 
 #mainBody{
     background-color:lightgrey;
@@ -72,3 +75,9 @@ p{
     cursor: pointer;
     filter: drop-shadow(7px 7px 10px black)
   }
+
+@media only screen and (max-width: 500px) {
+    .button{
+        font-size: 9vw;
+    }
+    }
