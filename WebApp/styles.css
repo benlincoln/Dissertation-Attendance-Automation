@@ -31,6 +31,10 @@ body{
 #studentNoLabel{
     font-family: 'Roboto',sans-serif;
 }
+#studentNo{
+    width: 10em;
+    height: auto;
+}
 
 #mainBody{
     background-color:lightgrey;
@@ -72,11 +76,11 @@ p{
     text-decoration: none;
     font-family: 'Montserrat',sans-serif;
     display: inline-block;
-    font-size: 3vw;
+    font-size: 2vw;
     margin: auto;
     margin-top: 5px;
     cursor: pointer;
-    filter: drop-shadow(7px 7px 10px black)
+    filter: drop-shadow(7px 7px 6px grey)
   }
 
 @media only screen and (max-width: 1440px) {
