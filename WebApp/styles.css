@@ -2,6 +2,9 @@ html{
 margin:0;}
 body{
     margin: 0;
+    padding:0;
+    width: 100%;
+    justify-content: center;
 }
 
 #header{
@@ -28,25 +31,25 @@ body{
  	justify-content: center;
  	list-style: none;
 }
-#studentNoLabel{
-    font-family: 'Roboto',sans-serif;
-}
+
 #studentNo{
-    width: 10em;
-    height: auto;
+    width: 50%;
+    padding: 0.5vw;
+    margin: 8px;
+    
 }
 
 #mainBody{
     background-color:lightgrey;
-    padding: 0px;
- 	width: 95%;
+ 	width: 100%;
     height: auto;
  	text-align: center;
     align-items: center;
     justify-content: center;
     margin: auto;
     line-height: 5px;
-    padding: 15px 32px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 #nextEventContainer{
     padding-top: 20px;
@@ -80,7 +83,8 @@ p{
     margin: auto;
     margin-top: 5px;
     cursor: pointer;
-    filter: drop-shadow(7px 7px 6px grey)
+    filter: drop-shadow(7px 7px 6px grey);
+    margin-bottom: 30px;
   }
 
 @media only screen and (max-width: 1440px) {
@@ -96,5 +100,12 @@ p{
     }
     h2{
         font-size: 5vw;
+    }
+    p{
+        font-size: 2vw;
+    }
+    #studentNo{
+        padding: 1.5vw;
+        
     }
     }
