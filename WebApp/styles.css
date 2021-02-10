@@ -87,9 +87,10 @@ p{
     margin-bottom: 30px;
   }
 
-@media only screen and (max-width: 1440px) {
+@media only screen and (max-width: 400px) {
     .button{
         font-size: 9vw;
+        background-color: chartreuse;
     }
     #mainBody{
         line-height: 1vw;
