@@ -9,14 +9,10 @@ body{
 
 #header{
     background-color: #2e68f0;
-    padding: 0px;
-    margin: auto;
  	width: 100%;
- 	height: auto;
  	line-height: 0px;
  	display: flex;
  	text-align: center;
- 	align-items: center;
  	justify-content: center;
  	list-style: none;
 }
@@ -41,12 +37,7 @@ body{
 
 #mainBody{
     background-color:lightgrey;
- 	width: 100%;
-    height: auto;
  	text-align: center;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
     line-height: 5px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -87,10 +78,9 @@ p{
     margin-bottom: 30px;
   }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 981px) {
     .button{
         font-size: 9vw;
-        background-color: chartreuse;
     }
     #mainBody{
         line-height: 1vw;
@@ -104,6 +94,7 @@ p{
     }
     p{
         font-size: 2vw;
+        line-height: 3vw;
     }
     #studentNo{
         padding: 1.5vw;
