@@ -13,14 +13,14 @@ namespace API.Controllers
     [ApiController]
     public class EventController : Controller
     {
-        // GET: api/<ValuesController>
+        // GET: api/event
         [HttpGet]
         public Event Get()
         {
             return new Event { EventID = "00000", EventName = "PlaceholderEvent", Room = "PlaceholderRoom", EventTime = DateTime.Now };
         }
 
-        // GET api/<ValuesController>/5
+        // GET api/event/id
         [HttpGet("{id}")]
         public string Get(string id)
         {
