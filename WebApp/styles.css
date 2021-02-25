@@ -28,7 +28,7 @@ body{
  	list-style: none;
 }
 
-#studentNo{
+.textInput{
     width: 50%;
     padding: 0.5vw;
     margin: 8px;
