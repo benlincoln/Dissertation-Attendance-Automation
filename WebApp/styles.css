@@ -96,7 +96,7 @@ p{
         font-size: 2vw;
         line-height: 3vw;
     }
-    #studentNo{
+    .textInput{
         padding: 1.5vw;
         
     }
