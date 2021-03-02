@@ -13,6 +13,8 @@ namespace API.Models
 
         public string Room { get; set; }
 
+        public string Class { get; set; }
+
         public DateTime EventTime { get; set; }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API.Controllers
 {
@@ -17,14 +16,28 @@ namespace API.Controllers
         [HttpGet]
         public Event Get()
         {
-            return new Event { EventID = "00000", EventName = "PlaceholderEvent", Room = "PlaceholderRoom", EventTime = DateTime.Now };
+            return new Event { EventID = "00000", EventName = "PlaceholderEvent", Room = "PlaceholderRoom", Class = "Placeholder Class", EventTime = DateTime.Now };
         }
 
         // GET api/event/id
-        [HttpGet("{id}")]
-        public string Get(string id)
+        // Get next event
+        [HttpGet("{studentid}")]
+        public string Get(string studentid)
         {
-            return $"{id}";
+            // Connection String
+            var cs = "Host=localhost;User ID=postgres;Password=password;Database=postgres;Port=5433";
+
+            using var con = new NpgsqlConnection(cs);
+            // Connect to the DB
+            con.Open();
+            
+            string sql = "SELECT * FROM events";
+            using var cmd = new NpgsqlCommand(sql, con);
+
+            using NpgsqlDataReader rdr = cmd.ExecuteReader();
+
+
+            return $"{studentid}";
         }
 
         // POST api/<ValuesController>

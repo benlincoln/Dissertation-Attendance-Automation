@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Route("/api/[controller]")]
+    [Route("/api/")]
     public class HomeController : Controller
     {
         [HttpGet]
