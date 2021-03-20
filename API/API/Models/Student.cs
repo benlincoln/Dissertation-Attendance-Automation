@@ -7,7 +7,7 @@ namespace API.Models
 {
     public class Student
     {
-        public string stundentID { get; set; }
+        public string studentID { get; set; }
 
         public string name { get; set; }
         

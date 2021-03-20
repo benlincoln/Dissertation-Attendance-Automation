@@ -11,10 +11,6 @@ namespace API.Models
 
         public string EventName { get; set; }
 
-        public string Room { get; set; }
-
-        public string Class { get; set; }
-
-        public DateTime EventTime { get; set; }
+        public string LocationID { get; set; }
     }
 }

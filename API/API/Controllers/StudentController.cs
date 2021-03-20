@@ -14,26 +14,23 @@ namespace API.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        // GET: api/student
+        
+        // GET api/<ValuesController>
         [HttpGet]
-        public string Get()
+        public Student Get()
         {
-            return "Error when using student controller, no username/password provided";
-        }
-
-        // GET api/<ValuesController>/studentid/password
-        [HttpGet("{id}/{password}")]
-        public Student Get(string id, string password)
-        {
+            string id = Request.Headers["username"];
+            string password = Request.Headers["password"];
+            
             // Connection String
             var connectionString = "Host=localhost;User ID=postgres;Password=password;Database=postgres;Port=5433";
 
-            using var con = new NpgsqlConnection(connectionString);
+            using var connection = new NpgsqlConnection(connectionString);
             // Connect to the DB
-            con.Open();
+            connection.Open();
 
             string sql = $"SELECT * FROM students WHERE studentno = '{id}' AND password = crypt('{password}', password)";
-            using var sqlCommand = new NpgsqlCommand(sql, con);
+            using var sqlCommand = new NpgsqlCommand(sql, connection);
             using NpgsqlDataReader reader = sqlCommand.ExecuteReader();
             reader.Read();
             Student returnObj = new Student();
@@ -41,20 +38,20 @@ namespace API.Controllers
             try
             {
                 returnObj.name = $"{reader.GetString(2)} {reader.GetString(3)}";
-                returnObj.stundentID = id;
+                returnObj.studentID = id;
                 reader.Close();
             }
             catch
             {
                 returnObj.name = "Error";
-                returnObj.stundentID = "Error";
+                returnObj.studentID = "Error";
                 return returnObj;
             }
 
 
             // Build a list of the classes
             List<string> classList = new List<string>();
-            sqlCommand.CommandText = $"SELECT * FROM classlist ";
+            sqlCommand.CommandText = $"SELECT * FROM classlist";
             sqlCommand.ExecuteReader();
             while (reader.Read())
             {
