@@ -29,7 +29,8 @@ namespace API.Controllers
             // Connect to the DB
             connection.Open();
 
-            string sql = $"SELECT * FROM students WHERE studentno = '{id}' AND password = crypt('{password}', password)";
+            string sql = $"PREPARE login (text, text) AS SELECT * FROM students WHERE studentno = $1 " +
+                $"AND password = crypt($2, password); EXECUTE login ('{id}','{password}');";
             using var sqlCommand = new NpgsqlCommand(sql, connection);
             using NpgsqlDataReader reader = sqlCommand.ExecuteReader();
             reader.Read();
@@ -59,7 +60,7 @@ namespace API.Controllers
             }
             reader.Close();
             // Iterate through the classes to find which the student is enrolled in
-            List<string> matches = new List<string>();
+            string matches = null;
             foreach (string curr in classList)
             {
                 sqlCommand.CommandText = $"SELECT * FROM {curr} WHERE studentno = '{id}'";
@@ -68,7 +69,11 @@ namespace API.Controllers
                 try
                 { // If the GetString function does not return an exception, a row has been found.
                     reader.GetString(0);
-                    matches.Add(curr);
+                    if (matches != null)
+                    {
+                        matches += (",");
+                    }
+                    matches += ("\'"+curr+"\'");
                 }
                 catch
                 {
@@ -77,7 +82,7 @@ namespace API.Controllers
                 }
                 reader.Close();
             }
-            returnObj.enrolledClasses = matches.ToArray();
+            returnObj.enrolledClasses = matches;
             return returnObj;
             
         }

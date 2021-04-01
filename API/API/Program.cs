@@ -13,10 +13,16 @@ namespace API
     public class Program
     {
         public static void Main(string[] args)
-        {
+        {             
             Console.WriteLine("Starting the API...");
             CreateHostBuilder(args).Run();
-        }
+            
+    }
+        public static string getConString()
+        {
+            string conString = System.IO.File.ReadAllText(@"Properties\conString.txt");
+            return conString;
+    }
 
         public static IWebHost CreateHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)

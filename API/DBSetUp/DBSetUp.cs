@@ -110,8 +110,8 @@ namespace Version
             Console.WriteLine("Populated class tables");
 
             // Events
-            cmd.CommandText = "INSERT INTO events (eventid, locationid, eventname, class,datetime) VALUES('1','1','eventNow','class1',LOCALTIMESTAMP)," +
-                "('0','1','pastAttended','class1',LOCALTIMESTAMP - interval '1 day'),('2','1','future','class1',LOCALTIMESTAMP + interval '1 day'),('3','2','test','class2',LOCALTIMESTAMP + interval '1 hour')";
+            cmd.CommandText = "INSERT INTO events (eventid, locationid, eventname, class,datetime) VALUES('1','1','eventNow','class1',LOCALTIMESTAMP(0))," +
+                "('0','1','pastAttended','class1',LOCALTIMESTAMP(0) - interval '1 day'),('2','1','future','class1',LOCALTIMESTAMP(0) + interval '1 day'),('3','2','test','class2',LOCALTIMESTAMP(0) + interval '1 hour')";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "INSERT INTO event1 (studentno) SELECT studentno FROM class1";
             cmd.ExecuteNonQuery();

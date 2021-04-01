@@ -22,3 +22,7 @@ API/API/bin/
 API/API/appsettings.Development.json
 
 API/API/API.csproj
+
+WebApp/node_modules/
+
+App/node_modules/

@@ -12,5 +12,9 @@ namespace API.Models
         public string EventName { get; set; }
 
         public string LocationID { get; set; }
+
+        public string Time { get; set; }
+
+        public bool Current { get; set; }
     }
 }

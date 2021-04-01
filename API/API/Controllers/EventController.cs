@@ -23,7 +23,8 @@ namespace API.Controllers
 
             string classes = Request.Headers["classes"];
             // Connection String
-            var conString = "Host=localhost;User ID=postgres;Password=password;Database=postgres;Port=5433";
+            string conString = Program.getConString();
+            
 
             using var con = new NpgsqlConnection(conString);
             // Connect to the DB
@@ -38,7 +39,8 @@ namespace API.Controllers
             reader.Read();
             try
             {
-                Event newEvent = new Event { EventID = reader.GetString(0), LocationID = reader.GetString(1), EventName = reader.GetString(2) };
+                DateTime time = (DateTime)reader.GetTimeStamp(4);
+                Event newEvent = new Event { EventID = reader.GetString(0), LocationID = reader.GetString(1), EventName = reader.GetString(2), Time = time.ToString(), Current = true };
                 Events.Add(newEvent);
             }
             // Exception is thrown if there is nothing to read
@@ -50,7 +52,8 @@ namespace API.Controllers
             reader.Read();
             try
             {
-                Event newEvent = new Event { EventID = reader.GetString(0), LocationID = reader.GetString(1), EventName = reader.GetString(2) };
+                DateTime time = (DateTime)reader.GetTimeStamp(4);
+                Event newEvent = new Event { EventID = reader.GetString(0), LocationID = reader.GetString(1), EventName = reader.GetString(2), Time = time.ToString(), Current = false };
                 Events.Add(newEvent);
             }
             // Exception is thrown if there is nothing to read
@@ -59,19 +62,21 @@ namespace API.Controllers
         }
 
         // PATCH api/<ValuesController>/id
-        [HttpPatch("{eventid}")]
-        public void Patch(string eventid)
+        [HttpPatch]
+        public void Patch()
         {
             string studentID = Request.Headers["studentID"];
-
+            string eventid = "event"+Request.Headers["eventID"];
             // Connection String
-            var conString = "Host=localhost;User ID=postgres;Password=password;Database=postgres;Port=5433";
+            var conString = Program.getConString();
 
             using var con = new NpgsqlConnection(conString);
+            con.Open();
 
             string sql = $"UPDATE {eventid} set attended = 'a' WHERE studentno = '{studentID}' ";
 
             using var cmd = new NpgsqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
         }
 
     }

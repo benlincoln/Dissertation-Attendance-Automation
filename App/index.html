@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Attendance Sign In</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto&display=swap" rel="stylesheet">
+        
+    </head>
+</html>
+<body>
+    
+    <section id = "header">
+        <h1>Attendance Sign In</h1>
+    </section>
+    <div id = "mainBody">
+        <section id="buttonContainer">
+            <input type="text" id="studentNo" class = "textInput" name="studentNo" placeholder="StudentID"><br><br>
+            <input type="password" id="pass" class = "textInput" name="pass" placeholder="Password"><br><br>
+            <button class="button" id="signin" onclick="clicked()">Sign In</button>
+            <p id="status">Click the above to check your attendance and sign in to an event</p>
+        </section>
+        <section id = "nextEventContainer">
+            <h2>Next Event</h2>
+            <p id = "nextEvent">Placeholder</p> <p id="nextTime">Placeholder Time</p>
+        </section>
+        <section id = "attendanceContainer">
+            <h2>Attendance</h2>
+            <p id="Attendance">Placeholder %</p>
+        </section>
+    <div>
+    <section id = "footer">
+        <p>This product was designed, developed and implemented by Benjamin Clarke in partial fulfilment of the 
+            requirement for BSc (Hons) Computer Science, School of Computer Science, University of Lincoln.<br>
+            Class of 2021
+        </p>
+        <p>By clicking/tapping the above "Sign In" button, you agree to have your data processed to determine your current location. Please note, this product will check your location a single time when you press the button, it does not 'track' you, nor is your location stored. </p>
+        <p id ="con">ip</p>
+        <p id ="baseUrl">-</p>
+    </section>
+    </div>
+</body>
+
+<script src="scripts.js"></script>
+
