@@ -2,7 +2,7 @@
 
 This project is a system designed to automate an attendance system, using the user's location via validating their default gateway.
 
-In this repository there are:
+In this repository there are three components:
 - Electron app, the product the end user will interact with
 - An ASP.NET API to interact with my database
 - A C# project that when ran, sets up an evironment to demonstrate the project
