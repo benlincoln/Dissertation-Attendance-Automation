@@ -9,8 +9,8 @@ console.log(gateway);
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1280,
-    height: 720,
+    width: 1920,
+    height: 1080,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -19,9 +19,10 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
   //mainWindow.removeMenu()
+  mainWindow.maximize()
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
 

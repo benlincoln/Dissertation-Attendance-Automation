@@ -32,7 +32,7 @@ namespace API.Controllers
             // Will use index 0 as closest event, 1 for if there is a current event to return the next event
             List<Event> Events = new List<Event>();
             string sql = $"SELECT * FROM events WHERE class in ({classes}) AND (DATE_PART('minute', datetime - LOCALTIMESTAMP)) <= 30" +
-                " AND (DATE_PART('day', datetime - LOCALTIMESTAMP)) = 0 AND (LOCALTIMESTAMP > datetime)";
+                " AND (DATE_PART('day', datetime - LOCALTIMESTAMP)) = 0 AND (DATE_PART('hour', datetime - LOCALTIMESTAMP)) = 0";
             using var cmd = new NpgsqlCommand(sql, con);
 
             using NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -61,9 +61,10 @@ namespace API.Controllers
             return Events;
         }
 
-        // PATCH api/<ValuesController>/id
+        // PATCH api/<ValuesController>
+        // Used to mark students present
         [HttpPatch]
-        public void Patch()
+        public Event Patch()
         {
             string studentID = Request.Headers["studentID"];
             string eventid = "event"+Request.Headers["eventID"];
@@ -72,11 +73,39 @@ namespace API.Controllers
 
             using var con = new NpgsqlConnection(conString);
             con.Open();
-
+            // Gets the event's table and marks the student present
             string sql = $"UPDATE {eventid} set attended = 'a' WHERE studentno = '{studentID}' ";
 
             using var cmd = new NpgsqlCommand(sql, con);
             cmd.ExecuteNonQuery();
+            return new Event { EventID = eventid };
+        }
+
+        [HttpPatch]
+        [Route("api/event/update")]
+        public void MarkAbscent()
+        {
+            var conString = Program.getConString();
+
+            using var con = new NpgsqlConnection(conString);
+            con.Open();
+            // Gets all events in the past day
+            string sql = $"SELECT eventid FROM events WHERE AND (DATE_PART('day', datetime - LOCALTIMESTAMP)) = 0";
+            using var cmd = new NpgsqlCommand(sql, con);
+            using NpgsqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            List<string> eventList = new List<string>();
+            while (reader.Read())
+            {
+                eventList.Add(reader.GetString(0));
+            }
+            foreach(string currEvent in eventList)
+            {
+                string currEventTbl = $"event{currEvent}";
+                cmd.CommandText = $"UPDATE {currEventTbl} set attended = 'u' WHERE attended = 'null' ";
+                cmd.ExecuteNonQuery();
+            }
+
         }
 
     }

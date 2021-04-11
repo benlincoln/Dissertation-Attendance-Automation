@@ -83,6 +83,46 @@ namespace API.Controllers
                 reader.Close();
             }
             returnObj.enrolledClasses = matches;
+
+            // Get the attendance
+            // Gets past events in the enrolled classes
+            sqlCommand.CommandText = $"SELECT eventid FROM events WHERE class in ({returnObj.enrolledClasses}) AND datetime < LOCALTIMESTAMP";
+            sqlCommand.ExecuteReader();
+            List<string> pastEvents = new List<string>();
+            while (reader.Read())
+            {
+                pastEvents.Add(reader.GetString(0));
+            }
+            if (pastEvents.Count == 0)
+            {
+                returnObj.attendance = "null";
+                return returnObj;
+            }
+            reader.Close();
+            int abscent = 0;
+            int total = 0;
+            foreach (string currID in pastEvents) {
+                // The below stops events that have just started being marked as not present
+                sqlCommand.CommandText = $"SELECT studentno from {"event" + currID} where attended = 'u'";
+                sqlCommand.ExecuteReader();
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    abscent++;
+                }
+                total++;
+                reader.Close();
+                }
+            int attendance;
+            try
+            {
+                attendance = 100 - ((abscent / total) * 100);
+            }
+            catch (DivideByZeroException)
+            {
+                attendance = 100;
+            }
+            returnObj.attendance = attendance.ToString();
             return returnObj;
             
         }

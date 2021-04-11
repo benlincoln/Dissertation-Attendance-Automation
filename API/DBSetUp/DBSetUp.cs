@@ -121,7 +121,7 @@ namespace Version
             cmd.ExecuteNonQuery();
             cmd.CommandText = "INSERT INTO event2 (studentno) SELECT studentno FROM class1";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO event1 (studentno) SELECT studentno FROM class2";
+            cmd.CommandText = "INSERT INTO event3 (studentno) SELECT studentno FROM class2";
             cmd.ExecuteNonQuery();
             Console.WriteLine("Populated event tables");
 
