@@ -7,4 +7,8 @@ In this repository there are three components:
 - An ASP.NET API to interact with my database
 - A C# project that when ran, sets up an evironment to demonstrate the project
 
+<<<<<<< HEAD
 Completed as part of my BSc (Hons) in Computer Science at the University of Lincoln, Lincolnshire, UK.
+=======
+Completed as part of my BSc (Hons) in Computer Science at the University of Lincoln, Lincolnshire, UK.
+>>>>>>> master
