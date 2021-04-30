@@ -47,7 +47,7 @@ namespace API.Controllers
             catch { }
             reader.Close();
             // Get the next event
-            cmd.CommandText = $"SELECT* FROM events WHERE class in ({classes}) AND datetime > LOCALTIMESTAMP ORDER BY datetime ASC";
+            cmd.CommandText = $"SELECT * FROM events WHERE class in ({classes}) AND datetime > LOCALTIMESTAMP ORDER BY datetime ASC";
             cmd.ExecuteReader();
             reader.Read();
             try

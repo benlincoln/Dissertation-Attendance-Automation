@@ -18,11 +18,11 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-  //mainWindow.removeMenu()
+  mainWindow.removeMenu()
   mainWindow.maximize()
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 }
 
 

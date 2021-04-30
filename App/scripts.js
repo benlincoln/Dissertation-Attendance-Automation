@@ -4,9 +4,7 @@ var gateway = null;
 
 document.onload = setTimeout(function () {
     gateway = document.getElementById("con").innerHTML;
-    console.log(document.getElementById("con").innerHTML);
     baseURL = document.getElementById("baseUrl").innerHTML;
-    console.log(baseURL);
     var target = document.getElementById("baseUrl");
     target.remove();
     const Http = new XMLHttpRequest();
@@ -59,7 +57,7 @@ function clicked() {
             fetch(baseURL + '/event', getEventReqContents)
                 .then(response => { return response.json() })
                 .then(data => {
-                    console.log(data)
+
                     if (data.length == 0) {
                         // No next event found for the student
                         document.getElementById("nextEvent").innerHTML = "No upcoming events!";
@@ -82,7 +80,7 @@ function clicked() {
                     fetch(baseURL + '/location', getLocReqContents)
                         .then(response => { return response.json() })
                         .then(data => {
-                            console.log(data.locationIP);
+
                             if (gateway != data.locationIP) {
                                 document.getElementById("status").innerHTML = "Error: Could not mark you as present," +
                                     " please make sure you are in " + data.locationName;
